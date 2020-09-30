@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Javascript Injection</title>
+    </head>
+    <body>
+      <h1 class="search-form-header">Test Site</h1>
+      <form class="search-form" autocomplete="off">
+          <input class="search-input" id="query-input" type="text" name="query" />
+          <button class="search-button" type="submit" role="button">Submit</button>
+      </form>
+      <h3 class="search-query">Result: <span id="query-output" class="query"></span></h3>
+
+
+<script>
+document.cookie = "username=me@me.com"
+document.cookie = "password=safepassword"
+if (document.readyState == 'loading') {
+	document.addEventListener('DOMContentLoaded', ready)
+} else {
+	ready()
+}
+
+function ready() {
+	var query = new URL(window.location).searchParams.get('query')
+	document.getElementById('query-input').value = query
+	document.getElementById('query-output').innerText = query
+}
+
+
+</script>
+</html>
